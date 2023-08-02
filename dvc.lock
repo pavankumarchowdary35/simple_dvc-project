@@ -1,0 +1,23 @@
+schema: '2.0'
+stages:
+  load_data:
+    cmd: python src/stage_01_load_and_save.py --config=params.yaml
+    deps:
+    - path: src/stage_01_load_and_save.py
+      hash: md5
+      md5: e29216eba5884bdef416095620a7fd73
+      size: 1209
+    - path: src/utils/common_utils.py
+      hash: md5
+      md5: 273c43109ed39fc5261f84a8a847e89e
+      size: 992
+    params:
+      params.yaml:
+        artifacts.raw_local_data: artifacts/raw_local_data_dir/data.csv
+        data_source.s3_source: 
+          https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-white.csv
+    outs:
+    - path: artifacts/raw_local_data_dir/data.csv
+      hash: md5
+      md5: 30c47056daa28237b4b2e956f476d13d
+      size: 292287
