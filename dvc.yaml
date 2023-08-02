@@ -47,6 +47,18 @@ stages:
     outs:
       - artifacts/saved_models/model.joblib    
 
-
+  evaluation:
+    cmd: python src/stage_04_evaluate.py --config=params.yaml
+    deps:
+      - src/stage_04_evaluate.py
+      - artifacts/processed_data/test.csv
+      - src/utils/common_utils.py
+      - artifacts/saved_models/model.joblib
+    params:
+      - base.target_col
+      - artifacts.split_data.test_path
+    metrics:
+      - artifacts/report/scores.json:
+          cache: false  
 
 

@@ -84,3 +84,31 @@ stages:
       hash: md5
       md5: 31147ba9f064fd94c841788400d51911
       size: 1231
+  evaluation:
+    cmd: python src/stage_04_evaluate.py --config=params.yaml
+    deps:
+    - path: artifacts/processed_data/test.csv
+      hash: md5
+      md5: 1f48baa976fd6b64f1391ae498e163c3
+      size: 58606
+    - path: artifacts/saved_models/model.joblib
+      hash: md5
+      md5: 31147ba9f064fd94c841788400d51911
+      size: 1231
+    - path: src/stage_04_evaluate.py
+      hash: md5
+      md5: 877d2db7f781ec5aac38db5de8c88196
+      size: 1800
+    - path: src/utils/common_utils.py
+      hash: md5
+      md5: 123daaaf045fb8143124ce4583750953
+      size: 1225
+    params:
+      params.yaml:
+        artifacts.split_data.test_path: artifacts/processed_data/test.csv
+        base.target_col: quality
+    outs:
+    - path: artifacts/report/scores.json
+      hash: md5
+      md5: 74bfc09c42596daa74dfdc3d4997856f
+      size: 99
